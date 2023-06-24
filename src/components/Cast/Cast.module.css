@@ -1,0 +1,36 @@
+.movieActors {
+    margin: 20px;
+        color: black;
+}
+
+.actorsTitle {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.actorsList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.actorItem {
+    width: 150px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.actorImage {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.actorName {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.actorCharacter {
+    margin-top: 5px;
+    font-style: italic;
+}
