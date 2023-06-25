@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { Suspense, useEffect, useState } from 'react';
+import { useParams, Link, Outlet, useNavigate } from 'react-router-dom';
 import { getMovieDetails } from '../../components/api/api-movies';
 import { poster } from '../../components/utils/poster';
 import css from './MovieDetails.module.css';
-import { Cast } from 'components/Cast/Cast';
-import { Reviews } from 'components/Reviews/Reviews';
 
 export function MovieDetails() {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -22,6 +21,14 @@ export function MovieDetails() {
 
     fetchMovieDetails();
   }, [movieId]);
+
+  const handleCastClick = () => {
+    navigate(`/movies/${movieId}/cast`);
+  };
+
+  const handleReviewsClick = () => {
+    navigate(`/movies/${movieId}/reviews`);
+  };
 
   return (
     <div className={css.movieDetails}>
@@ -53,21 +60,30 @@ export function MovieDetails() {
             </div>
             <ul className={css.additionalInfoList}>
               <li className={css.additionalItem}>
-                <Link className={css.additionalItemLink} to="cast">
-                  CAST
-                  <Cast />
+                <Link
+                  className={css.additionalItemLink}
+                  to="cast"
+                  onClick={handleCastClick}
+                >
+                  Cast
                 </Link>
               </li>
               <li className={css.additionalItem}>
-                <Link className={css.additionalItemLink} to="reviews">
+                <Link
+                  className={css.additionalItemLink}
+                  to="reviews"
+                  onClick={handleReviewsClick}
+                >
                   Reviews
-                  <Reviews />
                 </Link>
               </li>
             </ul>
           </div>
         </>
       )}
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }
