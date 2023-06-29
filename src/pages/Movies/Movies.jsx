@@ -33,7 +33,7 @@ export function Movies() {
   return (
     <div>
       <h2>Search Movies</h2>
-      <Search onSubmit={handleFormSubmit} location={{ from: location }} />
+      <Search onSubmit={handleFormSubmit} />
       <MovieList movies={movies} location={{ from: location }} />
     </div>
   );
