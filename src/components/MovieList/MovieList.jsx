@@ -9,12 +9,7 @@ export function MovieList({ movies, location }) {
     <div className={css.movieGrid}>
       {movies.map(movie => (
         <div key={movie.id} className={css.movieCard}>
-          <Link
-            to={{
-              pathname: `/movies/${movie.id}`,
-              state: location?.state ?? null,
-            }}
-          >
+          <Link to={`/movies/${movie.id}`} state={{ from: location }}>
             <img
               src={
                 movie.poster_path ? poster(movie.poster_path) : placeholderImage
